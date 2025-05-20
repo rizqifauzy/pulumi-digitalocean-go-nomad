@@ -3,3 +3,4 @@ cert/*
 *.pub
 readme.sh
 server.hcl
+Pulumi.do-start.yaml
