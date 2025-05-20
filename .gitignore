@@ -4,3 +4,4 @@ cert/*
 readme.sh
 server.hcl
 Pulumi.do-start.yaml
+main.go.bck
