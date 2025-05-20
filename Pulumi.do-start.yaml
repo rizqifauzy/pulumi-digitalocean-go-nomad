@@ -1,5 +1,0 @@
-config:
-  digitalocean:token:
-    secure: AAABABM4/Pcw6aDGURSDYclNVrAUjQOmPLluwAEGOGu4XgnXTEG8OzJIn5rIdT3bJO4C3Csdq6PMd6tEHKYuVmjpl2oVLaKB0RN4lfMxOK8pjzcZx+pH1wwQE7e/T4LUcLkGBa8Rlg==
-  configuration-example:publicKeyPath: dostart-keypair.pub
-  configuration-example:privateKeyPath: dostart-keypair
