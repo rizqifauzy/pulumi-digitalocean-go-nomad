@@ -105,6 +105,11 @@ Pastikan kamu sudah menginstal:
    ```
 
    ⚠️ Ganti token sesuai hasil `nomad acl bootstrap`.
+3. Akses nomad server via browser
+
+   ```
+   https://{IP Address}}:4646
+   ```
 
 ---
 
