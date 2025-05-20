@@ -102,7 +102,7 @@ Pastikan kamu sudah menginstal:
 2. **Set token ke environment variable:**
 
    ```bash
-   export NOMAD_TOKEN="8640c485-ab97-08c3-3b60-b45cae48740f"
+   export NOMAD_TOKEN="{TOKEN}"
    ```
 
    ⚠️ Ganti token sesuai hasil `nomad acl bootstrap`.
