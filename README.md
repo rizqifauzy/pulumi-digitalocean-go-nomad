@@ -1,5 +1,6 @@
 
 ## 🚀 Deploy Nomad Server di DigitalOcean dengan Pulumi (Go)
+![image](https://github.com/user-attachments/assets/73bb763f-ed5a-450b-b417-6810845eb609)
 
 Dokumen ini menjelaskan langkah-langkah untuk membuat dan mengelola cluster Nomad menggunakan Pulumi (Go) dan DigitalOcean.
 
