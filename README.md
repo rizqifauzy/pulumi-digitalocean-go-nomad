@@ -1,12 +1,12 @@
-
 ## Pulumi dan Golang untuk Automasi Deploy Nomad di DigitalOcean
+
 ![image](https://github.com/user-attachments/assets/73bb763f-ed5a-450b-b417-6810845eb609)
 
 Dokumen ini menjelaskan langkah-langkah untuk membuat dan mengelola cluster Nomad menggunakan Pulumi (Go) dan DigitalOcean.
 
 ---
 
-### 📦 Prasyarat
+### 📦 Pre-Requisites
 
 Pastikan kamu sudah menginstal:
 
@@ -20,14 +20,14 @@ Pastikan kamu sudah menginstal:
 
 ### 🛠️ Langkah-Langkah Deploy
 
-1. **Inisialisasi Proyek Pulumi (Go)**
+1. **Inisialisasi Project Pulumi (Go)**
 
    ```bash
    pulumi new go
    ```
 
-   Ikuti instruksi untuk memilih nama proyek, deskripsi, dan stack.
-2. **Setel Token DigitalOcean ke Pulumi**
+   Ikuti instruksi untuk memilih nama project, deskripsi, dan stack.
+2. **Apply Token DigitalOcean ke Pulumi**
 
    ```bash
    pulumi config set digitalocean:token {DIGITAL_OCEAN_TOKEN} --secret
@@ -109,7 +109,7 @@ Pastikan kamu sudah menginstal:
 3. Akses nomad server via browser
 
    ```
-   https://{IP Address}}:4646
+   https://{IP_ADDRESS}}:4646
    ```
 
 ---
@@ -122,4 +122,3 @@ Pastikan kamu sudah menginstal:
   ```bash
   pulumi destroy
   ```
-
