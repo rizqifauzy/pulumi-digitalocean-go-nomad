@@ -70,7 +70,7 @@ func main() {
 			}
 
 			renderConfig, err := local.NewCommand(ctx, "renderConfig", &local.CommandArgs{
-				Create: pulumi.String("cat ./template/server.tftpl | envsubst > server.yml"),
+				Create: pulumi.String("cat ./config/server.tftpl | envsubst > server.yml"),
 				Environment: pulumi.StringMap{
 					"IP_ADDRESS": pulumi.String(dropMeta.Ipv4Address),
 				},
