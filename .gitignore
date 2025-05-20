@@ -2,3 +2,4 @@ cert/*
 *.key
 *.pub
 readme.sh
+server.hcl

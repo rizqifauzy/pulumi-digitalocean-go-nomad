@@ -1,5 +1,5 @@
 # Pulumi.yaml provider configuration file
-name: configuration-example
+name: digitalocean-nomad
 runtime: go
 config:
     digitalocean:token:
