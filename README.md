@@ -123,8 +123,3 @@ Pastikan kamu sudah menginstal:
   pulumi destroy
   ```
 
----
-
-### 🧾 Lisensi
-
-Proyek ini menggunakan lisensi MIT. Silakan digunakan, dimodifikasi, atau disebarluaskan sesuai kebutuhan.
