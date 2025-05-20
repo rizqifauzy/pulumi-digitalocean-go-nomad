@@ -1,0 +1,6 @@
+# Pulumi.yaml provider configuration file
+name: configuration-example
+runtime: go
+config:
+    digitalocean:token:
+        value: 'TODO: var.do_token'

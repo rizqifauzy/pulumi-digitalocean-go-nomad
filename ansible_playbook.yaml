@@ -1,0 +1,128 @@
+- name: Setup Nomad Cluster
+  hosts: all
+  become: yes
+  vars:
+    nomad_repo_url: "https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo"
+    docker_repo_url: "https://download.docker.com/linux/centos/docker-ce.repo"
+    config_file_dest: "/etc/nomad.d/nomad.hcl"
+
+  tasks:
+    - name: Install yum-utils
+      yum:
+        name: yum-utils
+        state: present
+
+    - name: Add HashiCorp repository using yum-config-manager
+      command: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+
+    - name: Install Nomad
+      yum:
+        name: nomad
+        state: present
+
+    - name: Install Git
+      yum:
+        name: git
+        state: present
+
+    - name: Install Nomad autocomplete
+      command: nomad -autocomplete-install
+
+    - name: Install EPEL repository
+      yum:
+        name: epel-release
+        state: present
+
+    - name: Install LVM2 and device-mapper
+      yum:
+        name:
+          - device-mapper-persistent-data
+          - lvm2
+        state: present
+
+    - name: Add Docker repository using yum-config-manager
+      command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+    - name: Install Docker
+      yum:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: present
+
+    - name: Start Docker service
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Create Nomad configuration directory
+      file:
+        path: /etc/nomad.d
+        state: directory
+        mode: '0755'
+
+    - name: Create Nomad cert directory
+      file:
+        path: /etc/certs
+        state: directory
+        owner: nomad
+        group: nomad
+        mode: '0755'
+
+    - name: Copy Nomad agent CA certificate to server
+      copy:
+        src: "./cert/nomad-agent-ca.pem"
+        dest: "/etc/certs/ca.crt"
+        owner: nomad
+        group: nomad
+        mode: '0644'
+    
+    - name: Copy Nomad agent certificate to server
+      copy:
+        src: "./cert/global-server-nomad.pem"
+        dest: "/etc/certs/nomad.crt"
+        owner: nomad
+        group: nomad
+        mode: '0644'
+    
+    - name: Copy Nomad agent key certificate to server
+      copy:
+        src: "./cert/global-server-nomad-key.pem"
+        dest: "/etc/certs/nomad.key"
+        owner: nomad
+        group: nomad
+        mode: '0644'
+    
+
+    - name: Copy Nomad agent CA certificate to pki trust
+      copy:
+        src: "./cert/nomad-agent-ca.pem"
+        dest: "/etc/pki/ca-trust/source/anchors/bk.pem"
+        owner: root
+        group: root
+        mode: '0644'
+    
+    - name: Update CA trust
+      command: update-ca-trust extract
+
+    - name: Move Nomad configuration file for server
+      copy:
+        src: "./server.hcl"
+        dest: "{{ config_file_dest }}"
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Create Nomad data directory
+      file:
+        path: /var/lib/nomad
+        state: directory
+        mode: '0755'
+
+    - name: Enable and start Nomad service
+      systemd:
+        name: nomad
+        state: started
+        enabled: yes
